@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bara skriv!</title>
+    <style type="text/css">
+        body {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        #textInput {
+            flex: 1;
+            font-size: 400%;
+        }
+    </style>
+    <script lang="javascript">
+        window.addEventListener('load', () => {
+            const textArea = document.getElementById('textInput')
+            const previousText = localStorage.getItem('text')
+            textArea.value = previousText || ''
+            textArea.addEventListener('keyup', () => {
+                localStorage.setItem('text', textArea.value)
+            })
+        })
+    </script>
 </head>
+
 <body>
-    
+    <textarea id="textInput" spellcheck="false" autocomplete="off" autocorrect="off"></textarea>
 </body>
+
 </html>
