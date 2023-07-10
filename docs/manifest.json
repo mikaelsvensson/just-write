@@ -1,0 +1,12 @@
+{
+    "name": "Bara skriv",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "icons/text-box.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
