@@ -33,6 +33,10 @@
             textArea.addEventListener('keyup', () => {
                 localStorage.setItem('text', textArea.value)
             })
+            textArea.addEventListener('click', () => {
+                const length = textArea.value.length
+                textArea.setSelectionRange(length, length)
+            })
             setTimeout(() => {
                 textArea.focus()
             }, 0)
