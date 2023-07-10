@@ -1,7 +1,9 @@
 {
     "name": "Bara skriv",
+    "short_name": "Skriv",
     "start_url": "index.html",
     "display": "fullscreen",
+    "background_color": "white",
     "icons": [
         {
             "src": "icons/text-box.png",
