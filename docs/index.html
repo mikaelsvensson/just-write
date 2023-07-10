@@ -22,6 +22,7 @@
             border: none;
             padding: 10px;
             margin: 0;
+            text-transform: uppercase;
         }
     </style>
     <script lang="javascript">
@@ -32,6 +33,9 @@
             textArea.addEventListener('keyup', () => {
                 localStorage.setItem('text', textArea.value)
             })
+            setTimeout(() => {
+                textArea.focus()
+            }, 0)
         })
     </script>
 </head>
