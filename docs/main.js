@@ -30,6 +30,14 @@ function init() {
         }
     }
     textArea.addEventListener('keydown', preventChangingFocus)
+    
+    // Disable repeating characters if keyboard button is long-pressed.
+    const disableRepeatingCharacters = (event) => {
+        if (event.repeat) {
+            event.preventDefault()
+        }
+    }
+    textArea.addEventListener('keydown', disableRepeatingCharacters)
 
     // Auto-focus on input field when page loads.
     setTimeout(() => {
