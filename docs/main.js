@@ -1,5 +1,7 @@
 const KEYCODE_TAB = 9
 
+const MAX_KEY_REPEAT = 1000 // At most one repeated key stroke every N ms.
+
 function init() {
     const textArea = document.getElementById('textInput')
 
@@ -32,10 +34,23 @@ function init() {
     textArea.addEventListener('keydown', preventChangingFocus)
     
     // Disable repeating characters if keyboard button is long-pressed.
+    // const disableRepeatingCharacters = (event) => {
+    //     if (event.repeat) {
+    //         event.preventDefault()
+    //     }
+    // }
+
+    // Disable repeating characters if keyboard button is long-pressed.
+    let lastChar = null
+    let lastKeydown = null
     const disableRepeatingCharacters = (event) => {
-        if (event.repeat) {
+        if (lastChar === event.key && Date.now() - lastKeydown < MAX_KEY_REPEAT) {
             event.preventDefault()
+            return
         }
+
+        lastKeydown = Date.now()
+        lastChar = event.key
     }
     textArea.addEventListener('keydown', disableRepeatingCharacters)
 
