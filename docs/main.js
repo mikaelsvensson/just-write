@@ -2,6 +2,8 @@ const KEYCODE_TAB = 9
 
 const MAX_KEY_REPEAT = 1000 // At most one repeated key stroke every N ms.
 
+const MAX_LINES = 1000
+
 function init() {
     const textArea = document.getElementById('textInput')
 
@@ -58,6 +60,16 @@ function init() {
         lastKeydown = null
     }
     textArea.addEventListener('keyup', resetRepeatingCharacters)
+
+    const truncateIfNecessary = (event) => {
+        const value = event.target.value
+        const lines = value.split(/\n/)
+        if (lines.length > MAX_LINES) {
+            lines.splice(0, lines.length - MAX_LINES)
+            event.target.value = lines.join('\n')
+        }
+    }
+    textArea.addEventListener('keyup', truncateIfNecessary)
 
     // Auto-focus on input field when page loads.
     setTimeout(() => {
