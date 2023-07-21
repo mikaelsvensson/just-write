@@ -53,6 +53,11 @@ function init() {
         lastChar = event.key
     }
     textArea.addEventListener('keydown', disableRepeatingCharacters)
+    const resetRepeatingCharacters = () => {
+        lastChar = null
+        lastKeydown = null
+    }
+    textArea.addEventListener('keyup', resetRepeatingCharacters)
 
     // Auto-focus on input field when page loads.
     setTimeout(() => {
