@@ -4,6 +4,8 @@ const MAX_KEY_REPEAT = 1000 // At most one repeated key stroke every N ms.
 
 const MAX_LINES = 1000
 
+const UPDATE_CHECK_INTERVAL = 1 * 60 // Check for updates every N seconds
+
 function init() {
     const textArea = document.getElementById('textInput')
 
@@ -34,7 +36,7 @@ function init() {
         }
     }
     textArea.addEventListener('keydown', preventChangingFocus)
-    
+
     // Disable repeating characters if keyboard button is long-pressed.
     // const disableRepeatingCharacters = (event) => {
     //     if (event.repeat) {
@@ -80,9 +82,41 @@ function init() {
         navigator.serviceWorker.register("./service-worker.js")
             .then(registration => {
                 console.log("Registration done", registration)
+
+                registration.addEventListener('updatefound', () => {
+                    console.log('Service Worker update detected!');
+                });
+
+                setInterval(() => {
+                    console.log('Checking for updates')
+                    registration.update()
+                }, UPDATE_CHECK_INTERVAL * 1000);
+
+                registration.active.postMessage({
+                    msg: 'CACHE_NAME'
+                })
             })
             .catch(error => {
                 console.error("Failed to register service worker", error)
             })
+
+        let refreshing = false;
+
+        // Detect controller change and refresh the page
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            console.log('Controller changed', refreshing)
+            if (!refreshing) {
+                window.location.reload()
+                refreshing = true
+            }
+        })
+
+        navigator.serviceWorker.addEventListener("message", ({ data: { msg, value } }) => {
+            switch (msg) {
+                case 'CACHE_NAME':
+                    document.getElementById('appVersion').innerHTML = value
+                    break
+            }
+        });
     }
 }

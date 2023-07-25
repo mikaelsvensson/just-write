@@ -14,6 +14,8 @@
             height: 100%;
             width: 100%;
             position: absolute;
+
+            font-family: monospace;
         }
 
         #textInput {
@@ -23,6 +25,15 @@
             padding: 10px;
             margin: 0;
             text-transform: uppercase;
+
+            font-family: monospace;
+        }
+
+        #appVersion {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 80%;
         }
     </style>
     <script src="./main.js"></script>
@@ -32,6 +43,7 @@
 </head>
 
 <body>
+    <div id="appVersion"></div>
     <textarea id="textInput" spellcheck="false" autocomplete="off" autocorrect="off" tabindex="0"></textarea>
 </body>
 
