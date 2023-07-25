@@ -4,7 +4,7 @@ const MAX_KEY_REPEAT = 1000 // At most one repeated key stroke every N ms.
 
 const MAX_LINES = 1000
 
-const UPDATE_CHECK_INTERVAL = 1 * 60 // Check for updates every N seconds
+const UPDATE_CHECK_INTERVAL = 1 * 60 * 60 // Check for updates every 1 hour.
 
 function init() {
     const textArea = document.getElementById('textInput')
