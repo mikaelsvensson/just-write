@@ -2,7 +2,7 @@ const STATIC_ASSETS = [
     '/icons/text-box.png'
 ]
 
-const CACHE_NAME = '0.0.8'
+const CACHE_NAME = '0.0.9'
 
 self.addEventListener('install', serviceWorkerRegistration => {
     console.log('Installing service worker', CACHE_NAME)
