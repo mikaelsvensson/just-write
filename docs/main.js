@@ -1,6 +1,6 @@
 const KEYCODE_TAB = 9
 
-const MAX_KEY_REPEAT = 1000 // At most one repeated key stroke every N ms.
+const MAX_KEY_REPEAT = 5000 // At most one repeated key stroke every N ms.
 
 const MAX_LINES = 1000
 
